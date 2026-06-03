@@ -37,15 +37,54 @@ Stretch goals:
 
 ---
 
- Day 2 — TBD
+ Day 2 — Counter App
 
-Coming soon...
+Goal: Build a responsive counter with increment, decrement, and reset controls.
+
+Features to implement:
+- [x] Render a current count value
+- [x] Increment and decrement the counter
+- [x] Reset the value to zero
+- [ ] Add color or animation feedback for changes
+
+Concepts practiced:
+- Event listeners
+- DOM updates
+- State management in vanilla JS
+
+Starter file structure:
+```
+day-02-counter/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
- Day 3 — TBD
+ Day 3 — Digital Clock
 
-Coming soon...
+Goal: Build a live digital clock with an AM/PM toggle and session lifetime display.
+
+Features to implement:
+- [ ] Display the current time and date live
+- [ ] Add a button to switch between 12-hour and 24-hour time formats
+- [ ] Show how long the clock has been running since page load
+- [ ] Keep the UI polished with a modern card layout
+
+Concepts practiced:
+- `setInterval` for live updates
+- Date and time formatting
+- Toggle state with button interaction
+- Responsive styling
+
+Starter file structure:
+```
+day-03-clock/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
