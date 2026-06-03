@@ -88,9 +88,29 @@ day-03-clock/
 
 ---
 
-## Day 4 — TBD
+## Day 4 — Color Picker
 
-Coming soon...
+Goal: Build a button-driven color picker that changes the background and displays the current hex code.
+
+Features to implement:
+- [ ] Generate a random hex color when the button is clicked
+- [ ] Change the card background to the selected color
+- [ ] Display the color hex code in the UI
+- [ ] Adjust text contrast so the label stays readable
+
+Concepts practiced:
+- DOM manipulation and event listeners
+- Working with random numbers and hex color formatting
+- Dynamic styling with JavaScript
+- Accessibility via contrast-aware text
+
+Starter file structure:
+```
+day-04-color-picker/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
