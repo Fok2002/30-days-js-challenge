@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 07 — Tip Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="calculator-app">
+    <h1>Tip Calculator</h1>
+    <form class="calculator-card" id="tipCalculator">
+      <label for="billAmount">Bill amount</label>
+      <input id="billAmount" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" required />
+
+      <label for="tipPercent">Tip percent</label>
+      <input id="tipPercent" type="number" inputmode="decimal" min="0" step="0.1" placeholder="15" required />
+
+      <div class="result-row">
+        <div>
+          <p>Total</p>
+          <span id="totalAmount">$0.00</span>
+        </div>
+        <button type="button" id="calculateBtn">Calculate</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
