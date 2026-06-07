@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 08 — BMI Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="calculator-app">
+    <h1>BMI Calculator</h1>
+    <form class="calculator-card" id="bmiCalculator">
+      <label for="heightInput">Height (cm)</label>
+      <input id="heightInput" type="number" inputmode="decimal" min="0" step="0.1" placeholder="170" required />
+
+      <label for="weightInput">Weight (kg)</label>
+      <input id="weightInput" type="number" inputmode="decimal" min="0" step="0.1" placeholder="65" required />
+
+      <div class="result-row">
+        <div>
+          <p>Your BMI</p>
+          <span id="bmiValue">0.0</span>
+        </div>
+        <div>
+          <p>Category</p>
+          <span id="bmiCategory">Unknown</span>
+        </div>
+      </div>
+
+      <button type="button" id="calculateBtn">Calculate BMI</button>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
