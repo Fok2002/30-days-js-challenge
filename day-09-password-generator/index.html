@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 09 — Password Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="password-app">
+    <section class="app-card">
+      <h1>Password Generator</h1>
+      <p class="app-description">Choose a length, include numbers and symbols, then generate a strong password.</p>
+
+      <div class="output-row">
+        <input id="passwordOutput" type="text" readonly placeholder="Generated password will appear here" />
+        <button id="copyBtn" type="button">Copy</button>
+      </div>
+
+      <form id="passwordForm" class="controls-form">
+        <label class="range-label" for="lengthRange">
+          Length: <span id="lengthValue">16</span>
+        </label>
+        <input id="lengthRange" type="range" min="8" max="32" value="16" />
+
+        <div class="checkbox-row">
+          <label><input id="includeUppercase" type="checkbox" checked /> Uppercase letters</label>
+          <label><input id="includeNumbers" type="checkbox" checked /> Numbers</label>
+          <label><input id="includeSymbols" type="checkbox" checked /> Symbols</label>
+        </div>
+
+        <button id="generateBtn" class="generate-btn" type="submit">Generate Password</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
