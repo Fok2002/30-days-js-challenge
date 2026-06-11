@@ -1,0 +1,122 @@
+:root {
+  --bg: #eef3ff;
+  --card: #ffffff;
+  --text: #14213d;
+  --muted: #5f6d89;
+  --accent: #4d79ff;
+  --border: #d9e1ff;
+  --shadow: 0 28px 60px rgba(20, 33, 61, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: radial-gradient(circle at top, #f2f6ff 0%, #eef3ff 45%, #f7f7ff 100%);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.flashcards-app {
+  width: min(640px, 100%);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  text-align: center;
+}
+
+.instructions {
+  margin: 0.75rem auto 1.75rem;
+  max-width: 38rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+.cards-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.flashcard {
+  perspective: 1200px;
+  cursor: pointer;
+  outline: none;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.flashcard.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  border-radius: 28px;
+  backface-visibility: hidden;
+  color: var(--text);
+}
+
+.flashcard-front {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f8ff 100%);
+}
+
+.flashcard-back {
+  background: linear-gradient(180deg, #4d79ff 0%, #5ab9ff 100%);
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+.flashcard-face strong {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 1.35rem;
+}
+
+.flashcard-face p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.flashcard:focus-visible {
+  outline: 3px solid rgba(77, 121, 255, 0.35);
+  outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+  .flashcard-inner {
+    min-height: 200px;
+  }
+
+  .flashcard-face {
+    padding: 1.2rem;
+  }
+
+  .flashcard-face strong {
+    font-size: 1.15rem;
+  }
+}

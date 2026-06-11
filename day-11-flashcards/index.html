@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 11 — Flashcards</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="flashcards-app">
+    <h1>Flashcards</h1>
+    <p class="instructions">Click a card to flip it and reveal the definition.</p>
+
+    <section class="cards-grid" aria-label="Flashcards">
+      <article class="flashcard" tabindex="0" data-term="HTML">
+        <div class="flashcard-inner">
+          <div class="flashcard-face flashcard-front">
+            <strong>HTML</strong>
+            <p>Structure your web content.</p>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <strong>Definition</strong>
+            <p>HTML stands for HyperText Markup Language and defines the structure of web pages.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="flashcard" tabindex="0" data-term="CSS">
+        <div class="flashcard-inner">
+          <div class="flashcard-face flashcard-front">
+            <strong>CSS</strong>
+            <p>Style your web pages.</p>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <strong>Definition</strong>
+            <p>CSS stands for Cascading Style Sheets and controls layout, colors, and typography.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="flashcard" tabindex="0" data-term="JavaScript">
+        <div class="flashcard-inner">
+          <div class="flashcard-face flashcard-front">
+            <strong>JavaScript</strong>
+            <p>Add interactivity to the web.</p>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <strong>Definition</strong>
+            <p>JavaScript is a programming language used to build dynamic website behavior and interactions.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
