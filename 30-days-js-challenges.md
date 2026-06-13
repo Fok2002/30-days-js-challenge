@@ -120,6 +120,33 @@ Coming soon...
 
 ---
 
+Day 8 — BMI Calculator
+
+Goal: Build a BMI calculator that converts height and weight into a BMI score, then shows the matching health category.
+
+Features to implement:
+- [ ] Input height in centimeters and weight in kilograms
+- [ ] Compute BMI with `BMI = weight / (height / 100)^2`
+- [ ] Render the BMI value with one decimal place
+- [ ] Display a category label: Underweight, Normal weight, Overweight, or Obesity
+- [ ] Update results live while typing and on button press
+
+Concepts practiced:
+- Form inputs and validation
+- Numeric calculations and conditional logic
+- DOM updates with live feedback
+- Responsive layout and result styling
+
+Starter file structure:
+```
+day-08-bmi-calculator/
+├── index.html
+├── style.css
+└── app.js
+```
+
+---
+
 ## Day 6 — TBD
 
 coming soon...
@@ -138,9 +165,29 @@ Coming soon...
 
 ---
 
-Day 9 — TBD
+Day 9 — Password Generator
 
-Coming soon...
+Goal: Build a customizable password generator that lets the user choose length and include numbers and symbols.
+
+Features to implement:
+- [ ] Choose password length with a slider or number input
+- [ ] Optionally include uppercase letters, numbers, and symbols
+- [ ] Generate a secure password on demand
+- [ ] Display the result in a readonly field and make it easy to copy
+
+Concepts practiced:
+- String manipulation and random selection
+- Form controls and event handling
+- Clipboard interaction
+- Dynamic UI updates
+
+Starter file structure:
+```
+day-09-password-generator/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
@@ -150,9 +197,29 @@ Coming soon...
 
 ---
 
-Day 11 — TBD
+Day 11 — Flashcards
 
-Coming soon...
+Goal: Build a flashcard app where clicking a card flips it to reveal the definition.
+
+Features to implement:
+- [ ] Render a set of cards with a term on the front and a definition on the back
+- [ ] Flip a card when clicked, and allow keyboard interaction via Enter/Space
+- [ ] Use CSS transforms to animate the flip
+- [ ] Keep the UI clean and responsive for mobile screens
+
+Concepts practiced:
+- CSS 3D transforms and transitions
+- DOM event handling with click and keyboard events
+- Accessible interactive components
+- Card layout and responsive grids
+
+Starter file structure:
+```
+day-11-flashcards/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
