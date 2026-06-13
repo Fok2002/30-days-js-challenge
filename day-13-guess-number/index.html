@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Day 13 - Guess the Number</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Guess the Number</h1>
+    <p class="lead">I'm thinking of a number between 1 and 1000. Can you guess it?</p>
+
+    <div id="message" class="message">Make a guess!</div>
+
+    <form id="form" class="form">
+      <input type="number" id="guess" min="1" max="1000" placeholder="Enter your guess" required />
+      <div class="buttons">
+        <button class="btn">Guess</button>
+        <button type="button" id="reset" class="btn alt">New Game</button>
+      </div>
+    </form>
+
+    <div class="info">
+      <p>Attempts: <strong id="attempts">0</strong></p>
+      <p>Best (fewest): <strong id="best">—</strong></p>
+    </div>
+
+    <h3>Guesses</h3>
+    <ul id="history" class="history"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
