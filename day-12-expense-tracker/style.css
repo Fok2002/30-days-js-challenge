@@ -1,0 +1,21 @@
+:root{--bg:#f4f7fb;--card:#fff;--accent:#2ecc71;--danger:#e74c3c;--muted:#777}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+body{background:var(--bg);margin:0;padding:24px;display:flex;justify-content:center}
+.container{width:360px;background:var(--card);padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(20,20,40,.08)}
+h1{text-align:center;margin:0 0 16px}
+.balance-box{text-align:center;padding:8px 0}
+#balance{font-size:28px;font-weight:700;margin:6px 0}
+.totals{display:flex;justify-content:space-between;margin-top:8px}
+.totals div{flex:1;padding:8px;border-radius:6px}
+.income{background:#eafaf0;color:var(--accent);margin-right:8px;text-align:center}
+.expense{background:#fef3f3;color:var(--danger);text-align:center}
+.form-box{margin-top:12px}
+form{display:flex;flex-direction:column;gap:8px}
+input{padding:10px;border:1px solid #e6e9ef;border-radius:6px;font-size:14px}
+.btn{background:#3498db;color:#fff;padding:10px;border:0;border-radius:6px;cursor:pointer}
+.list{list-style:none;padding:0;margin:12px 0 0}
+.list li{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:6px;border-left:4px solid transparent;margin-bottom:8px;background:#fbfdff}
+.list li.minus{border-left-color:var(--danger)}
+.list li.plus{border-left-color:var(--accent)}
+.delete-btn{background:transparent;border:0;color:var(--muted);cursor:pointer}
+.delete-btn:hover{color:#000}
