@@ -235,9 +235,29 @@ Coming soon...
 
 ---
 
-Day 14 — TBD
+Day 14 — Random Quote Generator
 
-Coming soon...
+Goal: Build an inspirational quote card that shows a random quote on demand and lets the user copy it to the clipboard.
+
+Features to implement:
+- [x] Show a random quote with author text
+- [x] Add a “New Quote” button to load a different quote
+- [x] Add a “Copy” button to copy the quote and author text
+- [ ] Show a temporary confirmation message after copying
+
+Concepts practiced:
+- Arrays and random selection
+- DOM updates and event handling
+- Clipboard API interaction
+- UI feedback and card styling
+
+Starter file structure:
+```
+day-14-random-quote-generator/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
