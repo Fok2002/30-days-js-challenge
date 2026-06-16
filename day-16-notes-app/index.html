@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App - Day 16</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div>
+                <h1>Notes App</h1>
+                <p>Create, edit, delete, and save notes in localStorage.</p>
+            </div>
+            <button id="newNoteBtn" class="new-note-btn">New Note</button>
+        </header>
+
+        <main class="main-content">
+            <section class="notes-panel">
+                <div class="panel-header">
+                    <h2>Your Notes</h2>
+                    <span id="notesCount" class="notes-count">0 notes</span>
+                </div>
+                <div id="notesList" class="notes-list"></div>
+                <div id="emptyState" class="empty-state">
+                    <p>No notes yet. Click "New Note" to add your first note.</p>
+                </div>
+            </section>
+
+            <section class="editor-panel hidden" id="editorPanel">
+                <div class="editor-header">
+                    <h2 id="editorTitle">New Note</h2>
+                    <button id="saveNoteBtn" class="save-note-btn">Save Note</button>
+                </div>
+                <div class="form-group">
+                    <label for="noteTitle">Title</label>
+                    <input type="text" id="noteTitle" placeholder="Enter note title">
+                </div>
+                <div class="form-group">
+                    <label for="noteBody">Note</label>
+                    <textarea id="noteBody" rows="12" placeholder="Write your note..."></textarea>
+                </div>
+                <p class="help-text">Changes are saved locally and will persist on refresh.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
