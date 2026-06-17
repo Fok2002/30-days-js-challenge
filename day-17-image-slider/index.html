@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 17 - Image Slider/Carousel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Slider/Carousel</h1>
+        
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img src="https://via.placeholder.com/600x400/FF6B6B/FFFFFF?text=Slide+1" alt="Slide 1" class="slide active">
+                <img src="https://via.placeholder.com/600x400/4ECDC4/FFFFFF?text=Slide+2" alt="Slide 2" class="slide">
+                <img src="https://via.placeholder.com/600x400/45B7D1/FFFFFF?text=Slide+3" alt="Slide 3" class="slide">
+                <img src="https://via.placeholder.com/600x400/FFA502/FFFFFF?text=Slide+4" alt="Slide 4" class="slide">
+                <img src="https://via.placeholder.com/600x400/95E1D3/FFFFFF?text=Slide+5" alt="Slide 5" class="slide">
+            </div>
+
+            <button class="slider-btn prev-btn" aria-label="Previous slide">
+                <span>&#10094;</span>
+            </button>
+            <button class="slider-btn next-btn" aria-label="Next slide">
+                <span>&#10095;</span>
+            </button>
+        </div>
+
+        <div class="indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+            <span class="indicator" data-index="3"></span>
+            <span class="indicator" data-index="4"></span>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn pause-play-btn">
+                <span class="pause-icon">⏸</span>
+                <span class="play-icon" style="display: none;">▶</span>
+            </button>
+            <span class="slide-counter"><span class="current-slide">1</span> / <span class="total-slides">5</span></span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
