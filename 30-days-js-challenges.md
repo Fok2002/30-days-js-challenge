@@ -279,9 +279,29 @@ Coming soon...
 
 ---
 
-Day 18 — TBD
+Day 18 — Form Validation
 
-Coming soon...
+Goal: Build a form that validates email input, shows live password strength, and renders inline error messages.
+
+Features to implement:
+- [x] Validate email formatting with live feedback
+- [x] Show a password strength meter updated while typing
+- [x] Mark password requirements as they are met
+- [x] Display submission feedback and prevent invalid form submission
+
+Concepts practiced:
+- Form validation and input events
+- Regular expressions for email/password rules
+- Dynamic UI updates with DOM manipulation
+- User feedback for form errors and success states
+
+Starter file structure:
+```
+day-18-form-validation/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
