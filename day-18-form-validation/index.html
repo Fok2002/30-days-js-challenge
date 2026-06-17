@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 18 - Form Validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Form Validation</h1>
+        <p class="intro">Enter your email and password to see live validation and strength feedback.</p>
+
+        <form class="form" novalidate>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+                <span class="error-message" id="email-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Create a strong password" autocomplete="new-password" required>
+                <div class="password-strength-wrapper">
+                    <div class="strength-meter">
+                        <span class="strength-fill" id="strength-fill"></span>
+                    </div>
+                    <p class="strength-label">Strength: <strong id="strength-text">Too weak</strong></p>
+                </div>
+                <ul class="requirements" id="password-requirements">
+                    <li data-req="length">At least 8 characters</li>
+                    <li data-req="lowercase">One lowercase letter</li>
+                    <li data-req="uppercase">One uppercase letter</li>
+                    <li data-req="number">One number</li>
+                    <li data-req="special">One special character</li>
+                </ul>
+                <span class="error-message" id="password-error"></span>
+            </div>
+
+            <button class="submit-btn" type="submit">Submit</button>
+            <p class="form-feedback" id="form-feedback"></p>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
