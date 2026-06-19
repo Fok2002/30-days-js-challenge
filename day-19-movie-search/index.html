@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Movie Search</h1>
+        
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="movieInput" 
+                placeholder="Search for a movie..." 
+                autocomplete="off"
+            >
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <div id="apiKeyNotice" class="notice">
+            <strong>Note:</strong> Get your free API key from <a href="https://www.omdbapi.com/" target="_blank">omdbapi.com</a> 
+            and replace 'YOUR_API_KEY' in app.js
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Searching...</p>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+
+        <div id="results" class="results"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
