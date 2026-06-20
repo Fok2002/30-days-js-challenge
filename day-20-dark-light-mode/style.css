@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --border-color: #dddddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --button-bg: #007bff;
+    --button-hover: #0056b3;
+}
+
+body.dark-mode {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #444444;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --button-bg: #0d6efd;
+    --button-hover: #0b5ed7;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+}
+
+.theme-toggle {
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.theme-toggle:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.05);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.icon {
+    display: inline-block;
+}
+
+main {
+    margin: 40px 0;
+}
+
+.card {
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.card p {
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.card ul {
+    list-style-position: inside;
+    color: var(--text-secondary);
+}
+
+.card li {
+    margin-bottom: 8px;
+}
+
+code {
+    display: block;
+    background-color: var(--bg-primary);
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    border-left: 4px solid var(--button-bg);
+    overflow-x: auto;
+}
+
+footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    margin-top: 40px;
+}
+
+/* Smooth transitions for theme switch */
+* {
+    transition-property: background-color, color, border-color, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+/* Remove transition for immediate effect on load */
+body.no-transition * {
+    transition: none;
+}
+
+body.no-transition {
+    transition: none;
+}

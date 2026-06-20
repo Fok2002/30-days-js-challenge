@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Mode Toggle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Dark/Light Mode Toggle</h1>
+            <button class="theme-toggle" id="themeToggle">
+                <span class="icon">🌙</span>
+            </button>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2>Welcome!</h2>
+                <p>This app demonstrates a dark/light mode toggle that persists your preference using localStorage.</p>
+                <p>Click the button in the header to switch between themes. Your preference will be saved automatically.</p>
+            </section>
+
+            <section class="card">
+                <h3>Features</h3>
+                <ul>
+                    <li>Toggle between dark and light themes</li>
+                    <li>Preference saved to localStorage</li>
+                    <li>Theme loads automatically on page refresh</li>
+                    <li>Smooth transitions between themes</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h3>About localStorage</h3>
+                <p>localStorage is a way to store data on the user's browser that persists even after the page is closed or the browser is restarted. It's perfect for saving user preferences like theme selection.</p>
+                <code>localStorage.setItem(key, value);</code>
+                <code>localStorage.getItem(key);</code>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 30 Days JavaScript Challenge - Day 20</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
