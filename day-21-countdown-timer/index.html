@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer | Day 21</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-info">
+                <span class="day-badge">Day 21</span>
+                <h1>Countdown Timer</h1>
+            </div>
+            <a href="../30-days-js-challenges.md" class="back-link">← Challenge List</a>
+        </header>
+
+        <main>
+            <div class="timer-card">
+                <!-- Circular Progress Ring & Timer Display -->
+                <div class="timer-display-container">
+                    <svg class="progress-ring" width="280" height="280">
+                        <circle class="progress-ring__circle-bg" stroke="rgba(255, 255, 255, 0.05)" stroke-width="12" fill="transparent" r="120" cx="140" cy="140"/>
+                        <circle class="progress-ring__circle" stroke="url(#gradient)" stroke-width="12" fill="transparent" r="120" cx="140" cy="140" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a855f7" />
+                                <stop offset="100%" stop-color="#06b6d4" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    
+                    <div class="timer-text-overlay">
+                        <div id="timerDisplay" class="timer-digits">00:00</div>
+                        <div id="timerStatus" class="timer-subtext">Set time to begin</div>
+                    </div>
+                </div>
+
+                <!-- Input & Controls Section -->
+                <div class="timer-setup">
+                    <div class="input-group">
+                        <label for="minutesInput">Set Duration (Minutes)</label>
+                        <div class="number-input-wrapper">
+                            <input type="number" id="minutesInput" min="1" max="999" value="5" placeholder="Min">
+                            <span class="unit">min</span>
+                        </div>
+                    </div>
+
+                    <!-- Presets -->
+                    <div class="presets">
+                        <button class="preset-btn" data-time="1">1m</button>
+                        <button class="preset-btn" data-time="5">5m</button>
+                        <button class="preset-btn" data-time="10">10m</button>
+                        <button class="preset-btn" data-time="25">25m</button>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="controls">
+                        <button id="startPauseBtn" class="btn btn-primary">Start</button>
+                        <button id="resetBtn" class="btn btn-secondary" disabled>Reset</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Custom Alarm Modal Overlay -->
+        <div id="alarmModal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="alarm-icon-wrapper">
+                    <div class="alarm-icon">🔔</div>
+                </div>
+                <h2>Time's Up!</h2>
+                <p>Your countdown timer has completed.</p>
+                <button id="dismissAlarmBtn" class="btn btn-primary">Stop Alarm</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 30 Days JavaScript Challenge - Day 21</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
