@@ -315,11 +315,31 @@ Day 20 — TBD
 
 Coming soon...
 
----
+Day 21 — Countdown Timer
 
-Day 21 — TBD
+Goal: Build a responsive countdown timer where users can set durations in minutes, see active visual feedback, and receive notifications when done.
 
-Coming soon...
+Features to implement:
+- [x] Set custom timer duration in minutes
+- [x] Visual countdown timer (MM:SS) with an animated circular progress ring
+- [x] Start, pause, resume, and reset controls
+- [x] Audio alarm and visual alert overlay when the timer hits zero
+- [x] Dynamic tab title updating with remaining time
+
+Concepts practiced:
+- SVG circular stroke alignment and mathematical offsets
+- Web Audio API for custom sound wave synthesis
+- State machine management (running, paused, finished)
+- Event loop and cleanup with `setInterval`
+- Modal dialog overlays and accessibility
+
+Starter file structure:
+```
+day-21-countdown-timer/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
