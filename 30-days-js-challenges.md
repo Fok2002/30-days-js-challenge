@@ -343,9 +343,32 @@ day-21-countdown-timer/
 
 ---
 
-Day 22 — TBD
+Day 22 — Drag & Drop To-Do Board
 
-Coming soon...
+Goal: Build a highly responsive, polished drag-and-drop to-do board (Kanban board) with reorderable tasks and columns.
+
+Features to implement:
+- [x] Create a Kanban board layout with To Do, In Progress, and Completed columns
+- [x] Add tasks with custom title, details description, priority level, and tags
+- [x] Drag and drop tasks to reorder them within a column or change their status across columns
+- [x] Implement touch event listeners to simulate drag and drop on mobile devices
+- [x] Filter tasks dynamically via a search bar in real-time
+- [x] Persist task list and placement order using `localStorage`
+
+Concepts practiced:
+- HTML5 Drag and Drop API (`dragstart`, `dragover`, `drop`, `dragend`)
+- Touch Event Simulation (`touchstart`, `touchmove`, `touchend`)
+- Dynamic DOM positioning and vertical insert coordinate calculation
+- Search query filtering and custom empty-state renderings
+- High-fidelity glassmorphism CSS styling and transitions
+
+Starter file structure:
+```
+day-22-drag-drop-todo/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
