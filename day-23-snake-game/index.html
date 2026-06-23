@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Snake | 30 Days JS Challenge</title>
+  <meta name="description" content="A premium retro-arcade Snake Game with keyboard/WASD controls, sound effects, particle feedback, and high score tracking. Built with vanilla JS.">
+  <!-- Google Fonts for retro/modern gaming aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-wrapper">
+    <!-- Header Area -->
+    <header class="game-header">
+      <h1 class="logo">NEON<span class="highlight">SNAKE</span></h1>
+      <div class="header-controls">
+        <button id="sound-toggle" class="icon-btn" aria-label="Toggle Sound">
+          <svg id="speaker-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Score Board -->
+    <div class="scoreboard">
+      <div class="score-card">
+        <span class="card-label">SCORE</span>
+        <span id="current-score" class="card-value">000</span>
+      </div>
+      <div class="score-card">
+        <span class="card-label">HI-SCORE</span>
+        <span id="high-score" class="card-value">000</span>
+      </div>
+    </div>
+
+    <!-- Game Screen Container -->
+    <div class="game-container" id="game-container">
+      <canvas id="game-canvas" width="400" height="400"></canvas>
+
+      <!-- Overlay Screen: Start Game -->
+      <div id="start-screen" class="overlay-screen active">
+        <div class="overlay-content">
+          <h2 class="neon-title pulse">READY PILOT?</h2>
+          <p class="subtitle">Navigate the grid. Consume data cells. Avoid crashes.</p>
+          <button id="start-btn" class="glow-btn">INITIALIZE</button>
+          
+          <div class="instructions-panel">
+            <h3>CONTROLS</h3>
+            <div class="controls-guide">
+              <div class="guide-item">
+                <span class="key-icon">↑</span>
+                <span class="key-icon">↓</span>
+                <span class="key-icon">←</span>
+                <span class="key-icon">→</span>
+                <span>or</span>
+                <span class="key-icon">W</span>
+                <span class="key-icon">A</span>
+                <span class="key-icon">S</span>
+                <span class="key-icon">D</span>
+                <p>Steer Snake</p>
+              </div>
+              <div class="guide-item">
+                <span class="key-icon long">SPACEBAR</span>
+                <p>Pause / Resume</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlay Screen: Pause -->
+      <div id="pause-screen" class="overlay-screen">
+        <div class="overlay-content">
+          <h2 class="neon-title text-cyan">SYSTEM PAUSED</h2>
+          <p class="subtitle">Game session is suspended.</p>
+          <button id="resume-btn" class="glow-btn btn-cyan">RESUME</button>
+          <p class="hint">Press SPACEBAR to resume</p>
+        </div>
+      </div>
+
+      <!-- Overlay Screen: Game Over -->
+      <div id="game-over-screen" class="overlay-screen">
+        <div class="overlay-content">
+          <h2 class="neon-title text-magenta glitch">SYSTEM FAILURE</h2>
+          <p class="subtitle">Collision detected. Connection severed.</p>
+          
+          <div class="stats-summary">
+            <div class="summary-item">
+              <span class="sum-label">DATA CONSUMED:</span>
+              <span id="final-score" class="sum-value">0</span>
+            </div>
+            <div class="summary-item" id="new-high-score-badge" style="display: none;">
+              <span class="new-badge">NEW RECORD!</span>
+            </div>
+          </div>
+
+          <button id="restart-btn" class="glow-btn btn-magenta">REBOOT</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions / Footer -->
+    <footer class="game-footer">
+      <p>Use Keyboard Arrows/WASD to steer • Spacebar to pause</p>
+      <p class="challenge-tag">Day 23 • 30 Days JavaScript Challenge</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
