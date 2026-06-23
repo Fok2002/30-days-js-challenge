@@ -372,9 +372,34 @@ day-22-drag-drop-todo/
 
 ---
 
-Day 23 — TBD
+Day 23 — Snake Game
 
-Coming soon...
+Goal: Build a retro-arcade-inspired Snake Game with basic keyboard/WASD controls, persistent high scores, dynamic sound effects, and clean visual feedback.
+
+Features to implement:
+- [x] Retro arcade-style game board with custom Canvas grid layout
+- [x] Snake movement with basic keyboard arrow keys and WASD inputs
+- [x] Smooth collision detection (self-collision and boundary collisions)
+- [x] Food spawning logic with check to prevent spawning on the snake's body
+- [x] Real-time current score tracking and local storage high score persistence
+- [x] Start, Pause, Resume, and Game Over overlays
+- [x] Visual feedback such as glowing effects and particle bursts when eating food
+- [x] Synthesized sound effects (eat beep, collision, game start) via Web Audio API
+
+Concepts practiced:
+- Canvas 2D context drawing (`fillRect`, `arc`, paths, dropshadow/glow effects)
+- Keyboard event listener handling with scroll prevention
+- Dynamic game loop timing (delta time logic for independent speed)
+- Web Audio API for custom sound wave synthesis
+- Particle emitter math for visual effect burst animations
+
+Starter file structure:
+```
+day-23-snake-game/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
