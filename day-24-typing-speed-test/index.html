@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeFok Pro | 30 Days JS Challenge</title>
+  <meta name="description"
+    content="Test your typing speed and accuracy with real-time WPM tracking, live error highlighting, and performance analytics. Day 24 of the 30 Days JavaScript Challenge.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">⌨</div>
+        <h1 class="logo-text">Type<span class="accent">Racer</span> <span class="pro-badge">PRO</span></h1>
+      </div>
+      <div class="header-right">
+        <div class="difficulty-selector">
+          <button class="diff-btn active" id="diff-easy" data-difficulty="easy">Easy</button>
+          <button class="diff-btn" id="diff-medium" data-difficulty="medium">Medium</button>
+          <button class="diff-btn" id="diff-hard" data-difficulty="hard">Hard</button>
+        </div>
+        <div class="time-selector">
+          <button class="time-btn" id="time-15" data-time="15">15s</button>
+          <button class="time-btn active" id="time-30" data-time="30">30s</button>
+          <button class="time-btn" id="time-60" data-time="60">60s</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Live Stats Bar -->
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-item" id="stat-wpm">
+        <span class="stat-value" id="live-wpm">0</span>
+        <span class="stat-label">WPM</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item" id="stat-accuracy">
+        <span class="stat-value" id="live-accuracy">100</span>
+        <span class="stat-label">ACC%</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item" id="stat-timer">
+        <span class="stat-value" id="live-timer">30</span>
+        <span class="stat-label">SEC</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item" id="stat-streak">
+        <span class="stat-value" id="live-streak">0</span>
+        <span class="stat-label">STREAK</span>
+      </div>
+    </div>
+
+    <!-- WPM Chart Capsule -->
+    <div class="chart-capsule" id="chart-capsule">
+      <canvas id="wpm-chart" width="600" height="60"></canvas>
+    </div>
+
+    <!-- Main Game Area -->
+    <main class="game-area">
+
+      <!-- Quote Display -->
+      <div class="quote-panel" id="quote-panel">
+        <div class="quote-meta">
+          <span class="quote-category" id="quote-category">Programming</span>
+          <span class="cursor-indicator">
+            <span class="cursor-dot"></span> Live
+          </span>
+        </div>
+        <div class="quote-text" id="quote-text" aria-live="polite">
+          <!-- Characters will be rendered here by JS -->
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-panel">
+        <div class="input-wrapper" id="input-wrapper">
+          <textarea id="typing-input" class="typing-input" placeholder="Click here and start typing..."
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            aria-label="Typing input area"></textarea>
+          <div class="input-icons">
+            <div class="input-status" id="input-status">
+              <span id="status-icon">⌨</span>
+            </div>
+          </div>
+        </div>
+        <div class="input-controls">
+          <button class="ctrl-btn restart-btn" id="restart-btn" aria-label="Restart test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 .49-3.51"></path>
+            </svg>
+            Restart
+          </button>
+          <button class="ctrl-btn new-quote-btn" id="new-quote-btn" aria-label="New quote">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+            New Quote
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Results Overlay -->
+    <div class="results-overlay" id="results-overlay">
+      <div class="results-modal">
+        <div class="results-header">
+          <div class="results-emoji" id="results-emoji">🚀</div>
+          <h2 class="results-title" id="results-title">Speed Demon!</h2>
+          <p class="results-subtitle" id="results-subtitle">Outstanding performance</p>
+        </div>
+
+        <div class="results-grid">
+          <div class="result-card primary">
+            <span class="result-big" id="result-wpm">0</span>
+            <span class="result-label">Words Per Minute</span>
+          </div>
+          <div class="result-card">
+            <span class="result-val" id="result-accuracy">0%</span>
+            <span class="result-label">Accuracy</span>
+          </div>
+          <div class="result-card">
+            <span class="result-val" id="result-chars">0</span>
+            <span class="result-label">Characters</span>
+          </div>
+          <div class="result-card">
+            <span class="result-val" id="result-errors">0</span>
+            <span class="result-label">Errors</span>
+          </div>
+          <div class="result-card">
+            <span class="result-val" id="result-time">0s</span>
+            <span class="result-label">Time</span>
+          </div>
+          <div class="result-card">
+            <span class="result-val" id="result-streak">0</span>
+            <span class="result-label">Best Streak</span>
+          </div>
+        </div>
+
+        <!-- Personal Best Section -->
+        <div class="personal-best-section" id="pb-section">
+          <div class="pb-badge" id="pb-badge">
+            <span class="pb-icon">🏆</span>
+            <span class="pb-text">New Personal Best!</span>
+          </div>
+          <div class="pb-comparison" id="pb-comparison">
+            <!-- filled by JS -->
+          </div>
+        </div>
+
+        <!-- Results Chart -->
+        <div class="results-chart-wrap">
+          <canvas id="result-chart" width="460" height="100"></canvas>
+          <div class="chart-legend">
+            <span class="legend-dot wpm-dot"></span><span>WPM over time</span>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button class="results-btn primary-btn" id="retry-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 .49-3.51"></path>
+            </svg>
+            Try Again
+          </button>
+          <button class="results-btn secondary-btn" id="new-test-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+            </svg>
+            New Quote
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Press <kbd>Tab</kbd> + <kbd>Enter</kbd> to restart • <kbd>Esc</kbd> to reset</p>
+      <p class="challenge-tag">Day 24 • 30 Days JavaScript Challenge</p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
