@@ -409,9 +409,39 @@ Coming soon...
 
 ---
 
-Day 25 — TBD
+Day 25 — Markdown Previewer
 
-Coming soon...
+Goal: Build a live Markdown editor with split-pane preview, toolbar shortcuts, real-time stats, and export options.
+
+Features to implement:
+- [x] Custom Markdown → HTML parser built from scratch (no libraries)
+- [x] Real-time split-pane preview with 80ms debounce
+- [x] Rich toolbar: headings, bold, italic, links, images, lists, tables, code blocks
+- [x] Keyboard shortcuts: Ctrl+B, Ctrl+I, Ctrl+K, Tab indent, smart list continuation
+- [x] Resizable split pane via drag handle
+- [x] View modes: split / editor-only / preview-only
+- [x] Live stats: word count, char count, lines, reading time
+- [x] Light / dark theme toggle with localStorage persistence
+- [x] Copy rendered HTML to clipboard
+- [x] Export Markdown as `.md` file download
+- [x] Line numbers panel synchronized with editor scroll
+- [x] Toast notification system
+
+Concepts practiced:
+- Custom recursive Markdown parser with regex pipelines
+- Debounced `input` events for live preview
+- CSS custom properties and dark/light theme switching
+- Drag-based resize with `mousemove` / `mouseup` listeners
+- Clipboard API and Blob download API
+- `localStorage` for content and theme persistence
+
+Starter file structure:
+```
+day-25-markdown-previewer/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
