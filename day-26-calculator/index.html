@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 26 — Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-container">
+    <h1>Calculator</h1>
+    <div class="calculator" role="application" aria-label="Calculator">
+
+      <div class="display">
+        <div class="display-expression" id="expression" aria-live="polite">&nbsp;</div>
+        <div class="display-value" id="display" aria-live="assertive">0</div>
+      </div>
+
+      <div class="keypad">
+        <button class="btn btn-fn"  data-action="clear">C</button>
+        <button class="btn btn-fn"  data-action="toggle-sign">+/−</button>
+        <button class="btn btn-fn"  data-action="percent">%</button>
+        <button class="btn btn-op"  data-action="operator" data-value="÷">÷</button>
+
+        <button class="btn btn-num" data-action="digit" data-value="7">7</button>
+        <button class="btn btn-num" data-action="digit" data-value="8">8</button>
+        <button class="btn btn-num" data-action="digit" data-value="9">9</button>
+        <button class="btn btn-op"  data-action="operator" data-value="×">×</button>
+
+        <button class="btn btn-num" data-action="digit" data-value="4">4</button>
+        <button class="btn btn-num" data-action="digit" data-value="5">5</button>
+        <button class="btn btn-num" data-action="digit" data-value="6">6</button>
+        <button class="btn btn-op"  data-action="operator" data-value="−">−</button>
+
+        <button class="btn btn-num" data-action="digit" data-value="1">1</button>
+        <button class="btn btn-num" data-action="digit" data-value="2">2</button>
+        <button class="btn btn-num" data-action="digit" data-value="3">3</button>
+        <button class="btn btn-op"  data-action="operator" data-value="+">+</button>
+
+        <button class="btn btn-num btn-zero" data-action="digit" data-value="0">0</button>
+        <button class="btn btn-num" data-action="decimal">.</button>
+        <button class="btn btn-eq"  data-action="equals">=</button>
+      </div>
+
+    </div>
+    <p class="keyboard-hint">Keyboard supported: <kbd>0–9</kbd> <kbd>+ − * /</kbd> <kbd>Enter</kbd> <kbd>Backspace</kbd> <kbd>Esc</kbd></p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

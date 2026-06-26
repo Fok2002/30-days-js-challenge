@@ -1,0 +1,213 @@
+:root {
+  --bg: #f3f6ff;
+  --surface: #ffffff;
+  --text: #1d2d50;
+  --muted: #6b7b9b;
+  --accent: #5267df;
+  --accent-dark: #3a4fbf;
+  --border: #dde4f2;
+  --shadow: 0 24px 48px rgba(32, 45, 101, 0.12);
+
+  --btn-num-bg: #f7f9ff;
+  --btn-num-hover: #edf0fc;
+  --btn-fn-bg: #e8ecf8;
+  --btn-fn-hover: #dde2f4;
+  --btn-op-bg: #5267df;
+  --btn-op-hover: #3a4fbf;
+  --btn-op-active-bg: #ffffff;
+  --btn-op-active-color: #5267df;
+  --btn-eq-bg: #1d2d50;
+  --btn-eq-hover: #0f1c38;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #eef4ff 0%, #f9fbff 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding: 32px 16px 48px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0;
+}
+
+h1 {
+  margin: 0 0 28px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.calculator {
+  width: min(360px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* ── Display ── */
+.display {
+  background: var(--text);
+  padding: 24px 24px 20px;
+  text-align: right;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.display-expression {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.45);
+  min-height: 1.25em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: rtl;
+}
+
+.display-value {
+  font-size: clamp(2rem, 10vw, 3rem);
+  font-weight: 300;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: rtl;
+  letter-spacing: -0.5px;
+  transition: font-size 0.1s ease;
+}
+
+/* ── Keypad ── */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s ease, transform 0.08s ease, color 0.12s ease;
+  position: relative;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.93);
+}
+
+.btn:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent);
+  z-index: 1;
+}
+
+/* number buttons */
+.btn-num {
+  background: var(--btn-num-bg);
+  color: var(--text);
+}
+.btn-num:hover {
+  background: var(--btn-num-hover);
+}
+
+/* zero spans 2 columns */
+.btn-zero {
+  grid-column: span 2;
+  justify-content: flex-start;
+  padding-left: 28px;
+}
+
+/* function buttons (C, +/−, %) */
+.btn-fn {
+  background: var(--btn-fn-bg);
+  color: var(--accent);
+  font-weight: 600;
+}
+.btn-fn:hover {
+  background: var(--btn-fn-hover);
+}
+
+/* operator buttons */
+.btn-op {
+  background: var(--btn-op-bg);
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+.btn-op:hover {
+  background: var(--btn-op-hover);
+}
+.btn-op.active {
+  background: var(--btn-op-active-bg);
+  color: var(--btn-op-active-color);
+}
+
+/* equals button */
+.btn-eq {
+  background: var(--btn-eq-bg);
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+.btn-eq:hover {
+  background: var(--btn-eq-hover);
+}
+
+/* ── Keyboard hint ── */
+.keyboard-hint {
+  margin: 20px 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--text);
+}
+
+/* keyboard flash feedback */
+@keyframes key-flash {
+  0%   { filter: brightness(0.75); }
+  100% { filter: brightness(1); }
+}
+.key-flash {
+  animation: key-flash 0.15s ease-out;
+}
+
+@media (max-width: 400px) {
+  .btn {
+    height: 64px;
+    font-size: 1.1rem;
+  }
+  .btn-zero {
+    padding-left: 22px;
+  }
+}
