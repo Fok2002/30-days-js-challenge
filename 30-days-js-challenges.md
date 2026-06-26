@@ -445,9 +445,39 @@ day-25-markdown-previewer/
 
 ---
 
-Day 26 — TBD
+Day 26 — Calculator
 
-Coming soon...
+Goal: Build a fully functional calculator with basic arithmetic operations and full keyboard support.
+
+Features to implement:
+- [x] Addition, subtraction, multiplication, division
+- [x] Chained operations (evaluate mid-chain before applying next operator)
+- [x] Percentage key (% of previous operand when operator active, otherwise /100)
+- [x] Toggle sign (+/−)
+- [x] Decimal point with guard against duplicates
+- [x] Backspace to delete last digit
+- [x] Error handling for division by zero
+- [x] Scrollable display with auto font-size shrinking for long numbers
+- [x] Expression history shown above main display
+- [x] Active operator highlight on operator buttons
+- [x] Full keyboard support: 0–9, + − * /, Enter, Backspace, Escape, .
+- [x] Visual key-flash feedback when pressing keyboard keys
+
+Concepts practiced:
+- State machine pattern (current, previous, operator, flags)
+- Floating-point rounding with `Math.round(n * 1e10) / 1e10`
+- Keyboard event mapping and `preventDefault` for `/` scroll
+- CSS Grid for button layout with `grid-column: span 2` for zero
+- CSS `filter: brightness()` animation for key press feedback
+- `toLocaleString` for formatted number display
+
+Starter file structure:
+```
+day-26-calculator/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
