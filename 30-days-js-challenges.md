@@ -481,9 +481,38 @@ day-26-calculator/
 
 ---
 
-Day 27 — TBD
+Day 27 — Lens Gallery & Filter
 
-Coming soon...
+Goal: Build a premium Photo Gallery with category tags filtering, real-time search, interactive lightbox modal (with zoom, slideshow, and download features), local storage state management, and a custom image upload portal.
+
+Features to implement:
+- [x] Curated gallery grid featuring 10 high-resolution default photos across diverse categories (Nature, Architecture, Animals, Travel, People)
+- [x] Category tags filtering pills (All, Nature, Architecture, Animals, Travel, People, and Favorites) with active styling
+- [x] Real-time search that matches title, author, description, or tag keywords
+- [x] Popularity sorting selection (Default Order, Title A-Z, Title Z-A, Popular: Most Liked)
+- [x] Fully responsive layout with custom CSS Aspect-Ratio cards, glassmorphic themes, and dynamic image skeleton loaders
+- [x] Responsive lightbox modal with zoom-in/out buttons, mouse-drag panning, auto-play slideshow (with progress indicators), copy shareable mock link, and direct download anchor
+- [x] Favorites toggle (Like button) with localStorage state management and real-time statistics updating
+- [x] Live preview form upload modal to submit custom photo URL, title, category, description, and comma-separated tags
+- [x] Beautiful light/dark mode custom color schemes and Toast feedback notifications
+
+Concepts practiced:
+- Advanced array filtering, sorting, and indexing mapping
+- Custom CSS variables theme toggling and glassmorphic UI design
+- SVG icon inline embedding and custom button design systems
+- Form verification and validation states with instant layout card previewing
+- Zooming scale calculations and mouse/touch panning offset coordinate mathematics
+- Interval timers (setInterval / clearInterval) and CSS progress bar transitions
+- Toast system creation with dynamic element injection and removal keyframe animations
+- localStorage object synchronization for custom media lists and favorite status lists
+
+Starter file structure:
+```
+day-27-photo-gallery/
+├── index.html
+├── style.css
+└── app.js
+```
 
 ---
 
