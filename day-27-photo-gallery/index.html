@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 27 - Premium Lens Gallery & Filter</title>
+    <!-- Google Fonts: Inter and Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                </div>
+                <div class="brand-text">
+                    <h1>Lens<span>Gallery</span></h1>
+                    <p>Day 27 — 30 Days of JavaScript</p>
+                </div>
+            </div>
+            
+            <!-- Dashboard Stats -->
+            <div class="stats-dashboard">
+                <div class="stat-card">
+                    <span class="stat-value" id="stats-total">0</span>
+                    <span class="stat-label">Images</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stats-liked">0</span>
+                    <span class="stat-label">Favorites</span>
+                </div>
+                <div class="stat-card mobile-hide">
+                    <span class="stat-value" id="stats-active-filter">All</span>
+                    <span class="stat-label">Category</span>
+                </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </header>
+
+        <!-- Search, Sort & Actions Toolbar -->
+        <section class="toolbar-section">
+            <div class="search-wrapper">
+                <div class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+                <input type="text" id="search-input" placeholder="Search by title, description, tags..." autocomplete="off">
+                <button class="clear-search-btn" id="clear-search" aria-label="Clear search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div class="toolbar-controls">
+                <div class="select-wrapper">
+                    <select id="sort-select" aria-label="Sort images">
+                        <option value="default">Default Order</option>
+                        <option value="title-asc">Title: A to Z</option>
+                        <option value="title-desc">Title: Z to A</option>
+                        <option value="likes-desc">Popular: Most Liked</option>
+                    </select>
+                    <div class="select-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="open-upload-modal-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Add Image
+                </button>
+            </div>
+        </section>
+
+        <!-- Category Tags Scroll List -->
+        <nav class="categories-nav" aria-label="Categories filter">
+            <div class="categories-container" id="categories-container">
+                <!-- Dynamically populated, with presets -->
+                <button class="category-pill active" data-category="all">All</button>
+                <button class="category-pill" data-category="nature">Nature</button>
+                <button class="category-pill" data-category="architecture">Architecture</button>
+                <button class="category-pill" data-category="animals">Animals</button>
+                <button class="category-pill" data-category="travel">Travel</button>
+                <button class="category-pill" data-category="people">People</button>
+                <button class="category-pill favorites-pill" data-category="favorites">
+                    <svg class="heart-icon-mini" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    Favorites
+                </button>
+            </div>
+        </nav>
+
+        <!-- Gallery Grid -->
+        <main class="gallery-section">
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Image cards will be injected here -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state">
+                <div class="empty-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                </div>
+                <h3>No images found</h3>
+                <p>Try adjusting your search terms or filter settings.</p>
+                <button class="btn btn-outline" id="reset-filters-btn">Clear All Filters</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="modal lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image Detail View">
+        <button class="lightbox-nav-btn prev-btn" id="lightbox-prev" aria-label="Previous image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="lightbox-nav-btn next-btn" id="lightbox-next" aria-label="Next image">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+
+        <div class="lightbox-content">
+            <!-- Top Action Bar -->
+            <div class="lightbox-top-bar">
+                <div class="slideshow-status" id="slideshow-status">
+                    <div class="slideshow-progress" id="slideshow-progress"></div>
+                    <span id="slideshow-text">Slideshow Active</span>
+                </div>
+                <div class="lightbox-controls">
+                    <button class="control-btn" id="lightbox-play" title="Start Slideshow">
+                        <svg class="play-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <svg class="pause-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                    </button>
+                    <button class="control-btn" id="lightbox-zoom-in" title="Zoom In">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                    </button>
+                    <button class="control-btn" id="lightbox-zoom-out" title="Zoom Out">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                    </button>
+                    <button class="control-btn" id="lightbox-share" title="Copy Image Link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    </button>
+                    <a class="control-btn" id="lightbox-download" download target="_blank" title="Download Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </a>
+                    <button class="control-btn close-btn" id="lightbox-close" aria-label="Close Lightbox">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Image Viewport -->
+            <div class="lightbox-viewport" id="lightbox-viewport">
+                <div class="lightbox-zoom-container" id="lightbox-zoom-container">
+                    <img src="" alt="" id="lightbox-img" draggable="false">
+                </div>
+            </div>
+
+            <!-- Details Panel -->
+            <div class="lightbox-details-drawer">
+                <div class="drawer-header">
+                    <div class="title-section">
+                        <span class="category-badge" id="lightbox-category">Category</span>
+                        <h2 id="lightbox-title">Image Title</h2>
+                        <p class="author">By <span id="lightbox-author">Author Name</span></p>
+                    </div>
+                    <button class="like-btn" id="lightbox-like-btn" aria-label="Add to favorites">
+                        <svg class="heart-empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        <svg class="heart-filled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </button>
+                </div>
+                <div class="drawer-body">
+                    <p id="lightbox-desc">Detailed description of the photograph details...</p>
+                    <div class="tags-container" id="lightbox-tags">
+                        <!-- Dynamic tags -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload/Add Image Modal -->
+    <div class="modal form-modal" id="upload-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-overlay" id="upload-modal-overlay"></div>
+        <div class="modal-container">
+            <header class="modal-header">
+                <h2 id="modal-title">Add New Image</h2>
+                <button class="modal-close-btn" id="upload-modal-close" aria-label="Close Modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </header>
+            
+            <div class="modal-body">
+                <form id="upload-form" novalidate>
+                    <div class="form-grid">
+                        <div class="form-inputs">
+                            <!-- Image URL -->
+                            <div class="form-group">
+                                <label for="input-url">Image URL <span class="required">*</span></label>
+                                <input type="url" id="input-url" placeholder="https://images.unsplash.com/... or any photo URL" required autocomplete="off">
+                                <span class="error-message" id="url-error">Please enter a valid image URL (http/https).</span>
+                            </div>
+
+                            <!-- Title -->
+                            <div class="form-group">
+                                <label for="input-title">Title <span class="required">*</span></label>
+                                <input type="text" id="input-title" placeholder="Give your photo a caption" required minlength="3" maxlength="40" autocomplete="off">
+                                <span class="error-message" id="title-error">Title must be between 3 and 40 characters.</span>
+                            </div>
+
+                            <!-- Category -->
+                            <div class="form-group">
+                                <label for="input-category">Category <span class="required">*</span></label>
+                                <div class="select-wrapper">
+                                    <select id="input-category" required>
+                                        <option value="" disabled selected>Select a category</option>
+                                        <option value="nature">Nature</option>
+                                        <option value="architecture">Architecture</option>
+                                        <option value="animals">Animals</option>
+                                        <option value="travel">Travel</option>
+                                        <option value="people">People</option>
+                                    </select>
+                                    <div class="select-arrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                </div>
+                                <span class="error-message" id="category-error">Please select a category.</span>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="form-group">
+                                <label for="input-tags">Tags (Comma-separated)</label>
+                                <input type="text" id="input-tags" placeholder="e.g. mountain, sunset, snowy" autocomplete="off">
+                                <span class="helper-text">Add up to 5 tags, separated by commas.</span>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group">
+                                <label for="input-desc">Description</label>
+                                <textarea id="input-desc" placeholder="Tell the story behind this shot..." rows="3" maxlength="150"></textarea>
+                                <span class="helper-text char-counter"><span id="char-count">0</span> / 150 characters</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Preview Panel -->
+                        <div class="form-preview">
+                            <h3>Live Preview</h3>
+                            <div class="preview-card-container">
+                                <div class="preview-card" id="preview-card">
+                                    <div class="preview-image-wrapper">
+                                        <div class="preview-placeholder">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                            <span>Image Preview</span>
+                                        </div>
+                                        <img src="" alt="" id="preview-img" style="display: none;">
+                                    </div>
+                                    <div class="preview-info">
+                                        <span class="preview-category">Category</span>
+                                        <h4 class="preview-title">Title Placeholder</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="modal-footer">
+                        <button type="button" class="btn btn-outline" id="btn-cancel-upload">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="btn-submit-upload">Publish Photo</button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
