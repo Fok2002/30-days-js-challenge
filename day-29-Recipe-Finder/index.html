@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Chef - Premium Recipe Finder & Ingredient Search</title>
+  <meta name="description" content="Discover global culinary secrets. Search by recipe name, browse categories, filter by main ingredients, and get detailed cooking checklists.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <h1>Meal Chef</h1>
+      <p>Explore thousands of premium recipes. Find meals by name, category, or key ingredients.</p>
+    </header>
+
+    <!-- Search Controls Panel -->
+    <section class="search-card">
+      <div class="search-grid">
+        <!-- Name Query -->
+        <div class="input-group">
+          <label class="input-label" for="search-input">Search by Name</label>
+          <div class="input-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" id="search-input" class="input-field" placeholder="e.g. Beef Stroganoff, Pasta, Burger..." autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Ingredient Query -->
+        <div class="input-group">
+          <label class="input-label" for="ingredient-input">Main Ingredient</label>
+          <div class="input-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <input type="text" id="ingredient-input" class="input-field" placeholder="e.g. Chicken, Tomato, Egg..." autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Category Dropdown Filter -->
+        <div class="input-group">
+          <label class="input-label" for="category-select">Category</label>
+          <select id="category-select" class="select-field">
+            <option value="" selected>All Categories</option>
+            <!-- Categories dynamically loaded -->
+          </select>
+        </div>
+      </div>
+
+      <div class="search-grid" style="grid-template-columns: 1fr 1.2fr; margin-top: -0.5rem; gap: 1.25rem;">
+        <!-- Region/Area Dropdown Filter -->
+        <div class="input-group">
+          <label class="input-label" for="area-select">Cuisine Region</label>
+          <select id="area-select" class="select-field">
+            <option value="" selected>All Regions</option>
+            <!-- Regions dynamically loaded -->
+          </select>
+        </div>
+
+        <!-- Search Action Buttons -->
+        <div class="btn-container">
+          <button id="search-btn" class="btn btn-primary" style="flex-grow: 1;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 18px; height: 18px;">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            Find Recipes
+          </button>
+          <button id="surprise-btn" class="btn btn-outline" style="flex-grow: 1;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 18px; height: 18px;">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+            Surprise Me
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick category pills scroll list -->
+      <div class="categories-container" id="quick-categories">
+        <!-- Quick scroll category tags -->
+        <span class="category-pill active" data-category="">All Recipes</span>
+        <span class="category-pill" data-category="Beef">Beef</span>
+        <span class="category-pill" data-category="Chicken">Chicken</span>
+        <span class="category-pill" data-category="Vegetarian">Vegetarian</span>
+        <span class="category-pill" data-category="Dessert">Dessert</span>
+        <span class="category-pill" data-category="Pasta">Pasta</span>
+        <span class="category-pill" data-category="Seafood">Seafood</span>
+        <span class="category-pill" data-category="Breakfast">Breakfast</span>
+      </div>
+    </section>
+
+    <!-- Recipes Grid Section -->
+    <section>
+      <h2 class="recipe-section-title" id="results-title">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 24px; height: 24px; color: var(--primary);">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        Featured Recipes
+      </h2>
+
+      <div class="recipe-grid" id="recipe-grid">
+        <!-- Loader / Recipe Cards loaded dynamically -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Reusable Detail Modal Backdrop -->
+  <div class="modal-backdrop" id="recipe-modal-backdrop">
+    <div class="modal-container">
+      
+      <!-- Header -->
+      <div class="modal-header">
+        <div class="modal-title-wrapper">
+          <h2 class="modal-title" id="modal-meal-title">Meal Title</h2>
+          <div class="modal-subtitle-badges" id="modal-meal-badges">
+            <!-- Badges -->
+          </div>
+        </div>
+        <button class="modal-close" id="modal-close-btn" aria-label="Close recipe details">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 20px; height: 20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+
+      <!-- Body Content -->
+      <div class="modal-body">
+        
+        <!-- Left Column: Photo & Ingredients Checklist -->
+        <div class="modal-left-pane">
+          <img class="modal-recipe-thumb" id="modal-meal-img" src="" alt="Meal Photo Preview">
+          <div class="ingredients-box">
+            <h3 class="ingredients-title">Ingredients Checklist</h3>
+            <ul class="ingredients-checklist" id="modal-ingredients-list">
+              <!-- Checklist items populated via JS -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Step-by-Step Instructions -->
+        <div class="modal-right-pane">
+          <div class="instructions-box">
+            <h3 class="instructions-title">Instructions</h3>
+            <p class="instructions-text" id="modal-meal-instructions">Cooking instructions...</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Action Links -->
+      <div class="modal-footer">
+        <a class="btn btn-outline" id="modal-source-btn" href="#" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 18px; height: 18px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          Original Source
+        </a>
+        <a class="btn btn-primary" id="modal-youtube-btn" href="#" target="_blank" style="background-color: #e11d48; border-color: #e11d48;">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 18px; height: 18px;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Watch Tutorial
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
