@@ -1,4 +1,4 @@
-# 30 Days of JavaScript Projects 🔥
+# 30 Days of JavaScript Projects 
 
 A self-paced challenge to build **30 small JavaScript projects in 30 days** using only vanilla HTML, CSS, and JavaScript — no frameworks, no shortcuts.
 
@@ -6,7 +6,7 @@ By Day 30, you'll have a solid portfolio of real, working projects that demonstr
 
 ---
 
-## 🎯 Goals
+##  Goals
 
 - Master core JavaScript concepts through hands-on building
 - Build a GitHub portfolio of 30 live projects
@@ -15,7 +15,7 @@ By Day 30, you'll have a solid portfolio of real, working projects that demonstr
 
 ---
 
-## 📋 Rules
+##  Rules
 
 1. **No frameworks** — Pure HTML, CSS, and JavaScript only
 2. **One repo per project** — Each project gets its own GitHub repository
@@ -78,7 +78,7 @@ By Day 30, you'll have a solid portfolio of real, working projects that demonstr
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 Each day has its own repository following this naming convention:
 
@@ -102,7 +102,7 @@ day-XX-project-name/
 
 ---
 
-## 🚀 How to Run Any Project
+##  How to Run Any Project
 
 1. Clone the specific day's repository:
    ```bash
@@ -112,7 +112,7 @@ day-XX-project-name/
 
 ---
 
-## 📈 Progress Tracker
+##  Progress Tracker
 
 | Week | Status |
 |------|--------|
@@ -123,7 +123,7 @@ day-XX-project-name/
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - HTML5
 - CSS3
