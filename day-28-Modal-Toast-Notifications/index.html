@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Modal & Toast Notifications - JavaScript Challenge Day 28</title>
+  <meta name="description" content="A reusable premium notification system with custom toasts, animated modals, and promise-based dialogs. Built as a reusable vanilla JS tool.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <header class="app-header">
+      <h1>Popup &amp; Toast System</h1>
+      <p>Challenge Day 28: A reusable component suite for modals, custom toasts, and promise-based alerts.</p>
+    </header>
+
+    <main class="dashboard-grid">
+      <!-- Left Column: Controls Playground -->
+      <section class="card">
+        <h2 class="card-title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+          </svg>
+          Notification Playground
+        </h2>
+
+        <!-- Toast Configuration Form -->
+        <div style="margin-bottom: 2.5rem;">
+          <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Toast Configurations</h3>
+          
+          <div class="grid-2-col">
+            <div class="control-group">
+              <label for="toast-title">Toast Title (Optional)</label>
+              <input type="text" id="toast-title" class="input-field" value="Success!">
+            </div>
+            <div class="control-group">
+              <label for="toast-type">Toast Theme / Type</label>
+              <select id="toast-type" class="select-field">
+                <option value="success" selected>Success</option>
+                <option value="info">Info</option>
+                <option value="warning">Warning</option>
+                <option value="error">Error</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="toast-message">Toast Message</label>
+            <input type="text" id="toast-message" class="input-field" value="Your document has been successfully compiled.">
+          </div>
+
+          <div class="grid-2-col">
+            <div class="control-group">
+              <label for="toast-position">Screen Position</label>
+              <select id="toast-position" class="select-field">
+                <option value="top-right" selected>Top Right</option>
+                <option value="top-left">Top Left</option>
+                <option value="bottom-right">Bottom Right</option>
+                <option value="bottom-left">Bottom Left</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="toast-duration">Duration (ms) - 0 for sticky</label>
+              <input type="number" id="toast-duration" class="input-field" value="4000" min="0" step="500">
+            </div>
+          </div>
+
+          <div class="control-group grid-2-col" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
+            <label class="checkbox-label">
+              <input type="checkbox" id="toast-progress" checked>
+              Show Progress Bar
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="toast-click" checked>
+              Close on Click
+            </label>
+          </div>
+
+          <button id="btn-show-toast" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 18px; height: 18px;">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Trigger Toast Notification
+          </button>
+        </div>
+
+        <!-- Modal Configuration Form -->
+        <div style="margin-bottom: 2.5rem; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+          <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Modal Configurations</h3>
+          
+          <div class="grid-2-col">
+            <div class="control-group">
+              <label for="modal-title-input">Modal Header Title</label>
+              <input type="text" id="modal-title-input" class="input-field" value="New Feature Released">
+            </div>
+            <div class="control-group">
+              <label for="modal-size">Modal Width / Size</label>
+              <select id="modal-size" class="select-field">
+                <option value="sm">Small (400px)</option>
+                <option value="md" selected>Medium (550px)</option>
+                <option value="lg">Large (800px)</option>
+                <option value="full">Full Screen (Viewport)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="modal-content-input">Modal Body HTML Content</label>
+            <textarea id="modal-content-input" class="textarea-field" rows="3" style="resize: vertical;">&lt;p&gt;We have introduced full keyboard trap capabilities to support accessiblity (WCAG 2.1). Try pressing &lt;strong&gt;Tab&lt;/strong&gt; and &lt;strong&gt;Shift+Tab&lt;/strong&gt; inside the modal to navigate between buttons.&lt;/p&gt;</textarea>
+          </div>
+
+          <div class="control-group grid-2-col" style="margin-bottom: 1.5rem;">
+            <label class="checkbox-label">
+              <input type="checkbox" id="modal-backdrop-click" checked>
+              Backdrop Clicks Close
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="modal-escape-close" checked>
+              Escape Key Closes
+            </label>
+          </div>
+
+          <div class="control-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="modal-footer-btns" checked>
+              Attach Action Buttons (Confirm &amp; Cancel)
+            </label>
+          </div>
+
+          <button id="btn-launch-modal" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 18px; height: 18px;">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+            Launch Modal Window
+          </button>
+        </div>
+
+        <!-- Promise Alerts Configuration Form -->
+        <div style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+          <h3 style="font-size: 1.1rem; color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Promise Dialogs (Alert / Confirm / Prompt)</h3>
+          <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+            These built-in components use JavaScript Promises under the hood to return confirmation state and user inputs.
+          </p>
+
+          <div class="button-group">
+            <button id="btn-promise-alert" class="btn btn-outline">Trigger Alert</button>
+            <button id="btn-promise-confirm" class="btn btn-outline">Trigger Confirm</button>
+            <button id="btn-promise-prompt" class="btn btn-outline">Trigger Prompt</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Snippets and Live console -->
+      <section style="display: flex; flex-direction: column; gap: 2rem;">
+        
+        <!-- Live Code Generator -->
+        <div class="card code-section" style="flex-grow: 0;">
+          <h2 class="card-title" style="margin-bottom: 0.5rem; padding-bottom: 0.75rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            Integration Code
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.5rem;">
+            Copy-paste the JavaScript API snippet below to trigger this exact component configuration in your own project:
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>javascript</span>
+              <button class="btn-copy" id="btn-copy-code">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 14px; height: 14px;">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m-5 4h5m-5 4h5m-5 4h5" />
+                </svg>
+                Copy Snippet
+              </button>
+            </div>
+            <div class="code-body">
+              <pre><code id="code-snippet-display">// Snippet will load dynamically</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-Time Activity Log Console -->
+        <div class="card" style="flex-grow: 1; display: flex; flex-direction: column;">
+          <h2 class="card-title" style="margin-bottom: 0.5rem; padding-bottom: 0.75rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            System Console
+          </h2>
+          <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+            Tracks component lifetime events, promise resolutions, and prompt data captures.
+          </p>
+
+          <div style="flex-grow: 1; background: #030712; border: 1px solid var(--border-color); border-radius: 12px; font-family: var(--font-mono); font-size: 0.825rem; padding: 1rem; color: var(--text-secondary); max-height: 250px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.4rem;" id="console-output">
+            <div style="color: var(--text-muted);">Console initialized. Trigger actions above to inspect logs...</div>
+          </div>
+          <button id="btn-clear-logs" class="btn btn-secondary btn-sm" style="align-self: flex-end; margin-top: 0.75rem;">Clear Console</button>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Playground Controller Script
+    const toastTitle = document.getElementById('toast-title');
+    const toastType = document.getElementById('toast-type');
+    const toastMessage = document.getElementById('toast-message');
+    const toastPosition = document.getElementById('toast-position');
+    const toastDuration = document.getElementById('toast-duration');
+    const toastProgress = document.getElementById('toast-progress');
+    const toastClick = document.getElementById('toast-click');
+    const btnShowToast = document.getElementById('btn-show-toast');
+
+    const modalTitleInput = document.getElementById('modal-title-input');
+    const modalSize = document.getElementById('modal-size');
+    const modalContentInput = document.getElementById('modal-content-input');
+    const modalBackdropClick = document.getElementById('modal-backdrop-click');
+    const modalEscapeClose = document.getElementById('modal-escape-close');
+    const modalFooterBtns = document.getElementById('modal-footer-btns');
+    const btnLaunchModal = document.getElementById('btn-launch-modal');
+
+    const btnAlert = document.getElementById('btn-promise-alert');
+    const btnConfirm = document.getElementById('btn-promise-confirm');
+    const btnPrompt = document.getElementById('btn-promise-prompt');
+
+    const codeSnippetDisplay = document.getElementById('code-snippet-display');
+    const btnCopyCode = document.getElementById('btn-copy-code');
+    const consoleOutput = document.getElementById('console-output');
+    const btnClearLogs = document.getElementById('btn-clear-logs');
+
+    let activeTab = 'toast'; // 'toast', 'modal', 'promise'
+
+    function log(message, type = 'info') {
+      const logDiv = document.createElement('div');
+      const time = new Date().toLocaleTimeString();
+      let color = 'var(--text-secondary)';
+      
+      if (type === 'success') color = 'var(--success)';
+      else if (type === 'error') color = 'var(--error)';
+      else if (type === 'warning') color = 'var(--warning)';
+      else if (type === 'system') color = 'var(--primary)';
+
+      logDiv.innerHTML = `<span style="color: var(--text-muted)">[${time}]</span> <span style="color: ${color}">${message}</span>`;
+      consoleOutput.appendChild(logDiv);
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+
+    btnClearLogs.addEventListener('click', () => {
+      consoleOutput.innerHTML = '<div style="color: var(--text-muted);">Console cleared.</div>';
+    });
+
+    // Code snippet generator
+    function updateCodeSnippet() {
+      if (activeTab === 'toast') {
+        const title = toastTitle.value;
+        const msg = toastMessage.value;
+        const type = toastType.value;
+        const pos = toastPosition.value;
+        const dur = parseInt(toastDuration.value, 10);
+        const prog = toastProgress.checked;
+        const click = toastClick.checked;
+
+        codeSnippetDisplay.textContent = `// Show custom Toast Notification
+Toast.${type}("${msg}", {
+  title: "${title}",
+  position: "${pos}",
+  duration: ${dur},
+  showProgress: ${prog},
+  closeOnClick: ${click},
+  onClose: () => {
+    console.log("Toast finished animating out");
+  }
+});`;
+      } else if (activeTab === 'modal') {
+        const title = modalTitleInput.value;
+        const content = modalContentInput.value.replace(/"/g, '\\"').replace(/\n/g, '\\n');
+        const size = modalSize.value;
+        const bgClick = modalBackdropClick.checked;
+        const escClose = modalEscapeClose.checked;
+        const showBtns = modalFooterBtns.checked;
+
+        let btnsString = '';
+        if (showBtns) {
+          btnsString = `,\n  buttons: [
+    {
+      text: 'Cancel',
+      type: 'secondary',
+      onClick: (instance) => instance.close()
+    },
+    {
+      text: 'Apply Changes',
+      type: 'primary',
+      onClick: (instance) => {
+        alert("Changes saved!");
+        instance.close();
+      }
+    }
+  ]`;
+        }
+
+        codeSnippetDisplay.textContent = `// Instantiate custom modal
+const myModal = new Modal({
+  title: "${title}",
+  content: "${content}",
+  size: "${size}",
+  closeOnBackdropClick: ${bgClick},
+  closeOnEscape: ${escClose}${btnsString}
+});
+
+myModal.open();`;
+      } else if (activeTab === 'promise') {
+        codeSnippetDisplay.textContent = `// Reusable Promise-Based alert workflows
+
+// 1. Alert (resolve on closing)
+await CustomAlert.alert("This action cannot be undone", "Alert Title");
+
+// 2. Confirm (resolves boolean)
+const confirmed = await CustomAlert.confirm("Confirm deletion of this server?", "Critical Action");
+console.log("Confirmed: " + confirmed);
+
+// 3. Prompt (resolves input text or null if canceled)
+const textInput = await CustomAlert.prompt("Enter your administrative key:", "API key placeholder", "Auth Code");
+console.log("Returned input: " + textInput);`;
+      }
+    }
+
+    // Capture tab switching or fields modifications to update snippet
+    const toastInputs = [toastTitle, toastType, toastMessage, toastPosition, toastDuration, toastProgress, toastClick];
+    toastInputs.forEach(input => {
+      input.addEventListener('input', () => {
+        activeTab = 'toast';
+        updateCodeSnippet();
+      });
+      input.addEventListener('change', () => {
+        activeTab = 'toast';
+        updateCodeSnippet();
+      });
+    });
+
+    const modalInputs = [modalTitleInput, modalSize, modalContentInput, modalBackdropClick, modalEscapeClose, modalFooterBtns];
+    modalInputs.forEach(input => {
+      input.addEventListener('input', () => {
+        activeTab = 'modal';
+        updateCodeSnippet();
+      });
+      input.addEventListener('change', () => {
+        activeTab = 'modal';
+        updateCodeSnippet();
+      });
+    });
+
+    // Button actions
+    btnShowToast.addEventListener('click', () => {
+      activeTab = 'toast';
+      updateCodeSnippet();
+
+      const type = toastType.value;
+      const title = toastTitle.value;
+      const message = toastMessage.value;
+      const position = toastPosition.value;
+      const duration = parseInt(toastDuration.value, 10);
+      const showProgress = toastProgress.checked;
+      const closeOnClick = toastClick.checked;
+
+      log(`Triggered toast type="${type}" position="${position}"`, 'system');
+
+      Toast.show({
+        title,
+        message,
+        type,
+        position,
+        duration,
+        showProgress,
+        closeOnClick,
+        onClose: () => log(`Toast dismissed (type="${type}")`, 'info')
+      });
+    });
+
+    btnLaunchModal.addEventListener('click', () => {
+      activeTab = 'modal';
+      updateCodeSnippet();
+
+      const title = modalTitleInput.value;
+      const content = modalContentInput.value;
+      const size = modalSize.value;
+      const closeOnBackdropClick = modalBackdropClick.checked;
+      const closeOnEscape = modalEscapeClose.checked;
+      const showFooter = modalFooterBtns.checked;
+
+      log(`Launching Modal size="${size}"`, 'system');
+
+      const buttons = [];
+      if (showFooter) {
+        buttons.push(
+          {
+            text: 'Cancel',
+            type: 'secondary',
+            onClick: (instance) => {
+              log('Modal action canceled (Footer Cancel clicked)', 'warning');
+              instance.close();
+            }
+          },
+          {
+            text: 'Agree & Continue',
+            type: 'primary',
+            onClick: (instance) => {
+              log('Modal action agreed (Footer Agree clicked)', 'success');
+              instance.close();
+            }
+          }
+        );
+      }
+
+      const modal = new Modal({
+        title,
+        content,
+        size,
+        closeOnBackdropClick,
+        closeOnEscape,
+        buttons,
+        onOpen: () => log('Modal opened and focus trapped', 'info'),
+        onClose: () => log('Modal closed, backdrop destroyed', 'info')
+      });
+
+      modal.open();
+    });
+
+    btnAlert.addEventListener('click', async () => {
+      activeTab = 'promise';
+      updateCodeSnippet();
+      log('Running: CustomAlert.alert(...)', 'system');
+      await CustomAlert.alert("Operation completed successfully.", "Confirmation Alert");
+      log('CustomAlert.alert promise resolved', 'success');
+    });
+
+    btnConfirm.addEventListener('click', async () => {
+      activeTab = 'promise';
+      updateCodeSnippet();
+      log('Running: CustomAlert.confirm(...)', 'system');
+      const confirmed = await CustomAlert.confirm("Are you sure you want to drop the production database?", "Destructive Operation");
+      if (confirmed) {
+        log('CustomConfirm promise resolved to TRUE', 'success');
+      } else {
+        log('CustomConfirm promise resolved to FALSE', 'warning');
+      }
+    });
+
+    btnPrompt.addEventListener('click', async () => {
+      activeTab = 'promise';
+      updateCodeSnippet();
+      log('Running: CustomAlert.prompt(...)', 'system');
+      const text = await CustomAlert.prompt("Please input your user workspace name:", "lab-student", "Workspace Setup");
+      if (text === null) {
+        log('CustomPrompt promise resolved to NULL (canceled)', 'warning');
+      } else {
+        log(`CustomPrompt promise resolved to text: "${text}"`, 'success');
+      }
+    });
+
+    // Copy Code functionality
+    btnCopyCode.addEventListener('click', () => {
+      navigator.clipboard.writeText(codeSnippetDisplay.textContent)
+        .then(() => {
+          log('Snippet copied to clipboard!', 'success');
+          // Temporarily alter copy button text
+          const origText = btnCopyCode.innerHTML;
+          btnCopyCode.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 14px; height: 14px; color: var(--success);">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+            </svg>
+            Copied!
+          `;
+          setTimeout(() => {
+            btnCopyCode.innerHTML = origText;
+          }, 2000);
+        })
+        .catch(err => {
+          log(`Failed to copy snippet: ${err}`, 'error');
+        });
+    });
+
+    // Initialize display snippet
+    updateCodeSnippet();
+  </script>
+</body>
+</html>
